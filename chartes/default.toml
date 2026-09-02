@@ -1,0 +1,42 @@
+# Charte par défaut — style « dynamic minimalism », utilisée quand un créateur
+# ne fournit pas la sienne. Toute valeur est surchargée par la charte du créateur.
+
+creator = "default"
+language = "fr"
+tone = "direct, énergique, sans clickbait mensonger"
+
+[captions]
+style = "karaoke"          # karaoke | simple
+font = "Anton"
+font_size = 110
+primary_color = "&H00FFFFFF"    # blanc (mot chanté)
+highlight_color = "&H0000D7FF"  # jaune/or (mot courant) — format ASS &HAABBGGRR
+outline_color = "&H00000000"
+outline = 7
+shadow = 3
+margin_v = 640                  # remonté au-dessus de l'UI TikTok (PlayRes 1080x1920)
+max_words_per_line = 4
+uppercase = true
+
+[hook]
+enabled = true
+duration_s = 2.5
+font_size = 84
+margin_v = 320                  # distance depuis le haut (alignment 8)
+
+[clips]
+duration_min_s = 10
+duration_target_s = 40
+duration_max_s = 75
+max_clips = 5
+tail_s = 1.0                    # silence total après le dernier mot (images réelles
+                                # si la source le permet, sinon dernière image gelée)
+caption_max_chars = 150         # longueur max de la légende (titre + description + hashtags)
+
+[reframe]
+mode = "face"                   # face : le cadre suit les visages | center : cadrage centré fixe
+
+[hashtags]
+base = ["fyp", "pourtoi"]
+banned_words = []
+

@@ -1,0 +1,44 @@
+# Configuration technique de clippey.
+#
+#   cp clippey.toml.example clippey.local.toml
+#
+# `clippey.local.toml` est ignoré par git : y placer la clé API.
+# Référence complète : docs/configuration.md
+# Chaque option est surchargeable par variable d'environnement : CLIPPEY_LANGUAGE,
+# CLIPPEY_LLM__API_KEY, CLIPPEY_ASR__MODEL_REPO…
+
+language = "fr"
+
+# Chemins par défaut de ffmpeg-full (Homebrew, Apple Silicon). Ce ffmpeg doit être
+# compilé avec libass, faute de quoi les sous-titres ne sont pas incrustés.
+# ffmpeg_path = "/opt/homebrew/opt/ffmpeg-full/bin/ffmpeg"
+# ffprobe_path = "/opt/homebrew/opt/ffmpeg-full/bin/ffprobe"
+
+# Passe les cookies du navigateur à yt-dlp quand YouTube exige une session
+# (« Sign in to confirm you're not a bot ») : firefox | chrome | safari…
+# cookies_from_browser = "firefox"
+
+[llm]
+api_key = "sk-remplace-moi"                # ou la variable CLIPPEY_LLM__API_KEY
+base_url = "https://api.deepseek.com/v1"   # endpoint compatible OpenAI
+model = "deepseek-chat"
+
+# Prix du modèle en € par million de tokens. À réajuster en cas de changement de
+# modèle, sinon `clippey status` renvoie un coût faux.
+price_in_eur_per_mtok = 0.13
+price_out_eur_per_mtok = 0.26
+
+max_cost_per_video_eur = 0.50              # plafond dur, l'appel est refusé au-delà
+
+[asr]
+# Modèle Whisper téléchargé au premier lancement (~1,5 Go).
+model_repo = "mlx-community/whisper-large-v3-turbo"
+
+[ranking]
+# Poids des cinq axes notés par le LLM. Monter `score_floor` pour être plus sélectif.
+hook = 0.35
+emotion = 0.20
+value = 0.15
+quotability = 0.15
+standalone = 0.15
+score_floor = 6.0
